@@ -1,0 +1,7 @@
+sa[0]:<S i:0 f:0.00 ba:<false false false false false>>
+s[1]:<S i:0 f:0.00 ba:<false false false false false>>
+sa[0]:<S i:11 f:3293.92 ba:<true true false true true>>
+sa[1] = sa[0];
+sa[1]:<S i:11 f:3293.92 ba:<true true false true true>>
+Creating ls on the stack, initialized from sa[1].
+ls:<S i:11 f:3293.92 ba:<true true false true true>>

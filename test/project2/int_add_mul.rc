@@ -1,0 +1,9 @@
+// testing add/mul of integers
+
+function : void main() {
+  int i = 6;
+  int j = 7;
+
+  cout << 1 << " " << i + j << endl;
+  cout << 2 << " " << i * j << endl;
+}

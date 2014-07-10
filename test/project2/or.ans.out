@@ -1,0 +1,21 @@
+9 true || true -> 1  (in rta) true
+10 true || false -> 1  (in rta) true
+11 false || true -> 2  (in rfa) 3  (in rtb) true
+12 false || false -> 2  (in rfa) 4  (in rfb) false
+13 
+14 (t || t) || (t || t) -> 1  (in rta) true
+15 (t || t) || (t || f) -> 1  (in rta) true
+16 (t || t) || (f || t) -> 1  (in rta) true
+17 (t || t) || (f || f) -> 1  (in rta) true
+18 (t || f) || (t || t) -> 1  (in rta) true
+19 (t || f) || (t || f) -> 1  (in rta) true
+20 (t || f) || (f || t) -> 1  (in rta) true
+21 (t || f) || (f || f) -> 1  (in rta) true
+22 (f || t) || (t || t) -> 2  (in rfa) 3  (in rtb) true
+23 (f || t) || (t || f) -> 2  (in rfa) 3  (in rtb) true
+24 (f || t) || (f || t) -> 2  (in rfa) 3  (in rtb) true
+25 (f || t) || (f || f) -> 2  (in rfa) 3  (in rtb) true
+26 (f || f) || (t || t) -> 2  (in rfa) 4  (in rfb) 5  (in rtc) true
+27 (f || f) || (t || f) -> 2  (in rfa) 4  (in rfb) 5  (in rtc) true
+28 (f || f) || (f || t) -> 2  (in rfa) 4  (in rfb) 6  (in rfc) 7  (in rtd) true
+29 (f || f) || (f || f) -> 2  (in rfa) 4  (in rfb) 6  (in rfc) 8  (in rfd) false

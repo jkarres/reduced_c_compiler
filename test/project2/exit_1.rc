@@ -1,0 +1,12 @@
+
+function : int doexit(int i) {
+  exit(i);
+  return 12345;
+}
+
+function : void main() {
+  cout << "should exit with 1" << endl;
+  cout << "this should be the last line you see" << endl;
+  cout << doexit(1) << endl;
+  cout << "your test failed." << endl;
+}

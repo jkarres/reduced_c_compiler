@@ -1,0 +1,17 @@
+// testing assignment of globals
+
+int i;
+float f;
+bool b;
+
+function : void main() {
+  i = 10;
+  cout << 1 << " " << i << endl;
+
+  f = 3.1415;
+  cout << 2 << " " << f << endl;
+
+  b = true;
+  cout << 3 << " " << b << endl;
+
+}

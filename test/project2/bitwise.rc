@@ -1,0 +1,36 @@
+// testing |, ^, and &
+
+function : void main() {
+  int a = 10;
+  int b = 9;
+  int c = 8;
+
+  cout << 1 << " " << a | a << endl;
+  cout << 2 << " " << a | b << endl;
+  cout << 3 << " " << a | c << endl;
+  cout << 4 << " " << b | a << endl;
+  cout << 5 << " " << b | b << endl;
+  cout << 6 << " " << b | c << endl;
+  cout << 7 << " " << c | a << endl;
+  cout << 8 << " " << c | b << endl;
+  cout << 9 << " " << c | c << endl;
+  cout << 10 << " " << a ^ a << endl;
+  cout << 11 << " " << a ^ b << endl;
+  cout << 12 << " " << a ^ c << endl;
+  cout << 13 << " " << b ^ a << endl;
+  cout << 14 << " " << b ^ b << endl;
+  cout << 15 << " " << b ^ c << endl;
+  cout << 16 << " " << c ^ a << endl;
+  cout << 17 << " " << c ^ b << endl;
+  cout << 18 << " " << c ^ c << endl;
+  cout << 19 << " " << a & a << endl;
+  cout << 20 << " " << a & b << endl;
+  cout << 21 << " " << a & c << endl;
+  cout << 22 << " " << b & a << endl;
+  cout << 23 << " " << b & b << endl;
+  cout << 24 << " " << b & c << endl;
+  cout << 25 << " " << c & a << endl;
+  cout << 26 << " " << c & b << endl;
+  cout << 27 << " " << c & c << endl;
+}
+

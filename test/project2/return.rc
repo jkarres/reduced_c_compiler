@@ -1,0 +1,14 @@
+// testing return
+
+function : int i() { return 10; }
+
+function : float f() { return 1.23; }
+
+function : bool b() { return true; }
+
+function : void main() {
+  cout << 1 << " " << i() << endl;
+  cout << 2 << " " << f() << endl;
+  cout << 3 << " " << b() << endl;
+}
+

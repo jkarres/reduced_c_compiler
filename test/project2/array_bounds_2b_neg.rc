@@ -1,0 +1,12 @@
+// reading from an invalid location (negative)
+
+int[9] ia;
+
+function : void main() {
+
+  int i;
+
+  for (i = 8; i > -2; --i) {
+    cout << ia[i] << endl;
+  }
+}

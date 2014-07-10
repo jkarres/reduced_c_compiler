@@ -1,0 +1,52 @@
+f as float: 1.00
+f as int: 1
+f as bool: true
+
+fz as float: 0.00
+fz as int: 0
+fz as bool: false
+
+i as float: 2.00
+i as int: 2
+i as bool: true
+
+iz as float: 0.00
+iz as int: 0
+iz as bool: false
+
+bt as float: 1.00
+bt as int: 1
+bt as bool: true
+
+bf as float: 0.00
+bf as int: 0
+bf as bool: false
+
+(float) (int*) 1.23: 1.00
+(int) (int*) 12345: 12345
+f as FLOAT: 1.00
+f as INT: 1
+f as BOOL: true
+
+fz as FLOAT: 0.00
+fz as INT: 0
+fz as BOOL: false
+
+i as FLOAT: 2.00
+i as INT: 2
+i as BOOL: true
+
+iz as FLOAT: 0.00
+iz as INT: 0
+iz as BOOL: false
+
+bt as FLOAT: 1.00
+bt as INT: 1
+bt as BOOL: true
+
+bf as FLOAT: 0.00
+bf as INT: 0
+bf as BOOL: false
+
+(FLOAT) (INT*) 1.23: 1.00
+(INT) (INT*) 12345: 12345

@@ -1,0 +1,39 @@
+function : bool t() { cout << "in t()" << endl; return true; }
+function : bool f() { cout << "in f()" << endl; return false; }
+
+function : void main() {
+
+  cout << 1 << " " << true && true << endl;
+  cout << 2 << " " << true && false << endl;
+  cout << 3 << " " << true && t() << endl;
+  cout << 4 << " " << true && f() << endl;
+  cout << 5 << " " << false && true << endl;
+  cout << 6 << " " << false && false << endl;
+  cout << 7 << " " << false && t() << endl;
+  cout << 8 << " " << false && f() << endl;
+  cout << 9 << " " << t() && true << endl;
+  cout << 10 << " " << t() && false << endl;
+  cout << 11 << " " << t() && t() << endl;
+  cout << 12 << " " << t() && f() << endl;
+  cout << 13 << " " << f() && true << endl;
+  cout << 14 << " " << f() && false << endl;
+  cout << 15 << " " << f() && t() << endl;
+  cout << 16 << " " << f() && f() << endl;
+  cout << 17 << " " << true || true << endl;
+  cout << 18 << " " << true || false << endl;
+  cout << 19 << " " << true || t() << endl;
+  cout << 20 << " " << true || f() << endl;
+  cout << 21 << " " << false || true << endl;
+  cout << 22 << " " << false || false << endl;
+  cout << 23 << " " << false || t() << endl;
+  cout << 24 << " " << false || f() << endl;
+  cout << 25 << " " << t() || true << endl;
+  cout << 26 << " " << t() || false << endl;
+  cout << 27 << " " << t() || t() << endl;
+  cout << 28 << " " << t() || f() << endl;
+  cout << 29 << " " << f() || true << endl;
+  cout << 30 << " " << f() || false << endl;
+  cout << 31 << " " << f() || t() << endl;
+  cout << 32 << " " << f() || f() << endl;
+
+}

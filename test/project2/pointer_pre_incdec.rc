@@ -1,0 +1,42 @@
+// testing ++ptr and --ptr
+
+structdef S {
+  int[100] ia;
+};
+
+S[10] sa;
+
+
+function : void main() {
+
+
+  // first putting something in sa[1].ia[0]
+  sa[1].ia[0] = 42;
+
+  // now trying to get a pointer pointing there
+  S* ps = &sa[0];
+  
+  ++ps;
+
+  // and printing out what we have
+  cout << ps->ia[0] << endl;
+
+
+  // now the same thing with a pointer to int
+  int[10] ia;
+
+  ia[1] = 99;
+  int * pi = &ia[0];
+  ++pi;
+  cout << *pi << endl;
+
+
+
+  // and now doing the same thing to the [0] elements
+  (--ps)->ia[0] = -42;
+  *(--pi) = -99;
+
+  cout << sa[0].ia[0] << endl;
+  cout << ia[0] << endl;
+
+}

@@ -1,0 +1,54 @@
+function : float getfloat() { return 3; }
+
+function : void print(float f) { cout << f << endl; }
+
+const int i = 10;
+
+function : void main() {
+
+  int j = 11;
+
+  //
+  // initialization
+  //
+
+  float a = 4;
+  cout << a << endl;
+
+  float b = i;
+  cout << b << endl;
+
+  float c = j;
+  cout << c << endl;
+
+  const float d = 4;
+  cout << d << endl;
+
+  const float e = i;
+  cout << e << endl;
+
+  //
+  // assignment
+  //
+
+  a = 5;
+  cout << a << endl;
+
+  a = i;
+  cout << a << endl;
+
+  a = j;
+  cout << a << endl;
+
+  //
+  // function return value
+  //
+
+  cout << getfloat() << endl;
+
+  //
+  // passing by value
+  //
+  print(25);
+
+}

@@ -1,0 +1,1 @@
+public interface ExprOrReportedErr extends ExprOrNothingOrReportedErr {}

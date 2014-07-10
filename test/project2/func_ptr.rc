@@ -1,0 +1,27 @@
+
+function : void f() { cout << "in f()" << endl; }
+
+function : void g() { cout << "in g()" << endl; }
+
+function : void main() {
+
+
+  // initialization from function name          
+  funcptr : void () fp1 = f;
+  fp1();
+
+  // assignment from function name
+  fp1 = g;
+  fp1();
+
+  // initialization from function pointer
+  fp1 = f;
+  funcptr : void () fp2 = fp1;
+  fp2();
+
+  // assignment from function pointer
+  fp1 = g;
+  fp2 = fp1;
+  fp2();
+
+}

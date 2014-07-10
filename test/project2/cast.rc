@@ -1,0 +1,102 @@
+
+// also try with typedefs
+
+function : void f1() {
+  float f = 1.0;
+  float fz = 0.0;
+  int i = 2;
+  int iz = 0;
+  bool bt = true;
+  bool bf = false;
+  
+
+  
+  cout << "f as float: " << (float) f << endl;
+  cout << "f as int: " << (int) f << endl;
+  cout << "f as bool: " << (bool) f << endl;
+  cout << endl;
+
+  cout << "fz as float: " << (float) fz << endl;
+  cout << "fz as int: " << (int) fz << endl;
+  cout << "fz as bool: " << (bool) fz << endl;
+  cout << endl;
+
+  cout << "i as float: " << (float) i << endl;
+  cout << "i as int: " << (int) i << endl;
+  cout << "i as bool: " << (bool) i << endl;
+  cout << endl;
+
+  cout << "iz as float: " << (float) iz << endl;
+  cout << "iz as int: " << (int) iz << endl;
+  cout << "iz as bool: " << (bool) iz << endl;
+  cout << endl;
+
+  cout << "bt as float: " << (float) bt << endl;
+  cout << "bt as int: " << (int) bt << endl;
+  cout << "bt as bool: " << (bool) bt << endl;
+  cout << endl;
+
+  cout << "bf as float: " << (float) bf << endl;
+  cout << "bf as int: " << (int) bf << endl;
+  cout << "bf as bool: " << (bool) bf << endl;
+  cout << endl;
+
+  cout << "(float) (int*) 1.23: " << (float) (int*) 1.23 << endl;
+  cout << "(int) (int*) 12345: " << (int) (int*) 12345 << endl;
+
+}
+
+typedef float FLOAT;
+typedef int INT;
+typedef bool BOOL;
+
+function : void f2() {
+  FLOAT f = 1.0;
+  FLOAT fz = 0.0;
+  INT i = 2;
+  INT iz = 0;
+  BOOL bt = true;
+  BOOL bf = false;
+  
+
+  
+  cout << "f as FLOAT: " << (FLOAT) f << endl;
+  cout << "f as INT: " << (INT) f << endl;
+  cout << "f as BOOL: " << (BOOL) f << endl;
+  cout << endl;
+
+  cout << "fz as FLOAT: " << (FLOAT) fz << endl;
+  cout << "fz as INT: " << (INT) fz << endl;
+  cout << "fz as BOOL: " << (BOOL) fz << endl;
+  cout << endl;
+
+  cout << "i as FLOAT: " << (FLOAT) i << endl;
+  cout << "i as INT: " << (INT) i << endl;
+  cout << "i as BOOL: " << (BOOL) i << endl;
+  cout << endl;
+
+  cout << "iz as FLOAT: " << (FLOAT) iz << endl;
+  cout << "iz as INT: " << (INT) iz << endl;
+  cout << "iz as BOOL: " << (BOOL) iz << endl;
+  cout << endl;
+
+  cout << "bt as FLOAT: " << (FLOAT) bt << endl;
+  cout << "bt as INT: " << (INT) bt << endl;
+  cout << "bt as BOOL: " << (BOOL) bt << endl;
+  cout << endl;
+
+  cout << "bf as FLOAT: " << (FLOAT) bf << endl;
+  cout << "bf as INT: " << (INT) bf << endl;
+  cout << "bf as BOOL: " << (BOOL) bf << endl;
+  cout << endl;
+
+  cout << "(FLOAT) (INT*) 1.23: " << (FLOAT) (INT*) 1.23 << endl;
+  cout << "(INT) (INT*) 12345: " << (INT) (INT*) 12345 << endl;
+
+}
+
+
+function : void main() {
+  f1();
+  f2();
+}

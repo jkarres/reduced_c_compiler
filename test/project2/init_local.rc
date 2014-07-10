@@ -1,0 +1,22 @@
+// testing local variable initialization
+
+function : int i() { return 42; }
+
+function : float f() { return 9.8; }
+
+function : bool b() { return false; }
+
+function : void main() {
+  int ii = i(), iii = i() + i();
+
+  float ff = f();
+
+  bool bb = b();
+
+
+  cout << 1 << " " << ii << endl;
+  cout << 2 << " " << iii << endl;
+  cout << 3 << " " << ff << endl;
+  cout << 4 << " " << bb << endl;
+
+}

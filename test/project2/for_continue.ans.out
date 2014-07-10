@@ -1,0 +1,135 @@
+i is now 0
+  j is now 0
+  j is now 1
+  j is now 2
+  j is now 3
+  j is now 4
+  j is now 5
+  j is now 6
+  j is now 7
+  j is now 8
+  j is now 9
+i is now 1
+  j is now 0
+  j is now 1
+    1 is odd
+  j is now 2
+  j is now 3
+    3 is odd
+  j is now 4
+  j is now 5
+    5 is odd
+  j is now 6
+  j is now 7
+    7 is odd
+  j is now 8
+  j is now 9
+    9 is odd
+i is now 2
+  j is now 0
+  j is now 1
+  j is now 2
+  j is now 3
+  j is now 4
+  j is now 5
+  j is now 6
+  j is now 7
+  j is now 8
+  j is now 9
+i is now 3
+  j is now 0
+  j is now 1
+    3 is odd
+  j is now 2
+  j is now 3
+    9 is odd
+  j is now 4
+  j is now 5
+    15 is odd
+  j is now 6
+  j is now 7
+    21 is odd
+  j is now 8
+  j is now 9
+    27 is odd
+i is now 4
+  j is now 0
+  j is now 1
+  j is now 2
+  j is now 3
+  j is now 4
+  j is now 5
+  j is now 6
+  j is now 7
+  j is now 8
+  j is now 9
+i is now 5
+  j is now 0
+  j is now 1
+    5 is odd
+  j is now 2
+  j is now 3
+    15 is odd
+  j is now 4
+  j is now 5
+    25 is odd
+  j is now 6
+  j is now 7
+    35 is odd
+  j is now 8
+  j is now 9
+    45 is odd
+i is now 6
+  j is now 0
+  j is now 1
+  j is now 2
+  j is now 3
+  j is now 4
+  j is now 5
+  j is now 6
+  j is now 7
+  j is now 8
+  j is now 9
+i is now 7
+  j is now 0
+  j is now 1
+    7 is odd
+  j is now 2
+  j is now 3
+    21 is odd
+  j is now 4
+  j is now 5
+    35 is odd
+  j is now 6
+  j is now 7
+    49 is odd
+  j is now 8
+  j is now 9
+    63 is odd
+i is now 8
+  j is now 0
+  j is now 1
+  j is now 2
+  j is now 3
+  j is now 4
+  j is now 5
+  j is now 6
+  j is now 7
+  j is now 8
+  j is now 9
+i is now 9
+  j is now 0
+  j is now 1
+    9 is odd
+  j is now 2
+  j is now 3
+    27 is odd
+  j is now 4
+  j is now 5
+    45 is odd
+  j is now 6
+  j is now 7
+    63 is odd
+  j is now 8
+  j is now 9
+    81 is odd

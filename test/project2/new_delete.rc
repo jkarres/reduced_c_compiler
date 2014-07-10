@@ -1,0 +1,24 @@
+structdef S {
+  int i; float f;
+};
+
+function : void main() {
+  S* ps = NULL;
+
+  cout << ps == NULL << endl;
+
+  new ps;
+
+  cout << ps == NULL << endl;
+
+  ps->i = 51;
+  ps->f = 97.34;
+
+  cout << ps->i << endl;
+  cout << ps->f << endl;
+
+  delete ps;
+
+  cout << ps == NULL << endl;
+
+}

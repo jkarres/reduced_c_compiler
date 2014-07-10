@@ -1,0 +1,11 @@
+// testing global variable init
+
+function : int double(int i) { return 2 * i; }
+
+int i = 11;
+int j = double(i);
+
+function : void main() {
+  cout << i << endl;
+  cout << j << endl;
+}

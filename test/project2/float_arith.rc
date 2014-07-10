@@ -1,0 +1,65 @@
+
+function : void main() {
+  float e = 2.71828183;
+  const float pi = 3.14159265;
+  int i = 2;
+  const int j = 3;
+
+  cout << 1 << " " << 11.0 << endl;
+  cout << 2 << " " << +11.0 << endl;
+  cout << 3 << " " << -11.0 << endl;
+
+  cout << 4 << " " << pi << endl;
+  cout << 5 << " " << +pi << endl;
+  cout << 6 << " " << -pi << endl;
+
+  cout << 7 << " " << e << endl;
+  cout << 8 << " " << +e << endl;
+  cout << 9 << " " << -e << endl;
+
+  cout << 10 << " " << e + pi << endl;
+  cout << 11 << " " << e - pi << endl;
+  cout << 12 << " " << e * pi << endl;
+  cout << 13 << " " << e / pi << endl;
+  cout << 14 << " " << pi + e << endl;
+  cout << 15 << " " << pi - e << endl;
+  cout << 16 << " " << pi * e << endl;
+  cout << 17 << " " << pi / e << endl;
+
+  cout << 18 << " " << i + pi << endl;
+  cout << 19 << " " << pi + i << endl;
+  cout << 20 << " " << i - pi << endl;
+  cout << 21 << " " << pi - i << endl;
+  cout << 22 << " " << i * pi << endl;
+  cout << 23 << " " << pi * i << endl;
+  cout << 24 << " " << i / pi << endl;
+  cout << 25 << " " << pi / i << endl;
+
+  cout << 26 << " " << j + pi << endl;
+  cout << 27 << " " << pi + j << endl;
+  cout << 28 << " " << j - pi << endl;
+  cout << 29 << " " << pi - j << endl;
+  cout << 30 << " " << j * pi << endl;
+  cout << 31 << " " << pi * j << endl;
+  cout << 32 << " " << j / pi << endl;
+  cout << 33 << " " << pi / j << endl;
+
+  cout << 34 << " " << i + e << endl;
+  cout << 35 << " " << e + i << endl;
+  cout << 36 << " " << i - e << endl;
+  cout << 37 << " " << e - i << endl;
+  cout << 38 << " " << i * e << endl;
+  cout << 39 << " " << e * i << endl;
+  cout << 40 << " " << i / e << endl;
+  cout << 41 << " " << e / i << endl;
+
+  cout << 42 << " " << j + e << endl;
+  cout << 43 << " " << e + j << endl;
+  cout << 44 << " " << j - e << endl;
+  cout << 45 << " " << e - j << endl;
+  cout << 46 << " " << j * e << endl;
+  cout << 47 << " " << e * j << endl;
+  cout << 48 << " " << j / e << endl;
+  cout << 49 << " " << e / j << endl;
+
+}

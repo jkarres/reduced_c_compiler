@@ -1,0 +1,56 @@
+// testing if 
+
+function : void f(int i) {
+  if (i <= 4) {
+
+    if (i < 3) {
+
+      if (i == 1) {
+        cout << "one" << endl;
+      } else {
+        cout << "two" << endl;
+      }
+
+    } else {
+      if (i > 3) {
+        cout << "four" << endl;
+      } else {
+        cout << "three" << endl;
+      }
+    }
+
+  } else {
+
+    if (i >= 7) {
+
+      if (i != 8) {
+        cout << "seven" << endl;
+      }  else {
+        cout << "eight" << endl;
+      }
+
+    } else {
+
+      if (i == 5) {
+        cout << "five" << endl;
+      } else {
+        cout << "six" << endl;
+      }
+
+    }
+
+ }
+
+}
+
+
+function : void main() {
+  f(1);
+  f(2);
+  f(3);
+  f(4);
+  f(5);
+  f(6);
+  f(7);
+  f(8);
+}

@@ -1,0 +1,39 @@
+
+int[10] ia;
+
+function : void main() {
+
+  float[10] fa;
+
+  int i;
+
+  for (i = 0; i < 10; ++i) {
+
+      fa[i] = ia[i] = 10-i;
+
+  }
+
+  for (i = 0; i < 10; ++i) {
+
+    cout << ia[i] << " " << fa[i] << endl;
+
+  }
+
+  bool[10] ba;
+
+  bool * pb = &ba[0];
+
+
+  for (i = 0; i < 10; ++i) {
+
+    pb[i] = (ia[i] <= 5);
+
+  }
+
+  for (i = 0; i < 10; ++i) {
+
+    cout << ba[i] << endl;
+
+  }
+
+}

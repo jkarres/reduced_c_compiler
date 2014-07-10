@@ -1,0 +1,4 @@
+
+int * pi;
+
+function : void main() { *pi; }

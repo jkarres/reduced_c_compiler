@@ -1,0 +1,21 @@
+// just checking that these get initialized exactly once // you'll
+// need to check the assembly yourself to see whether they're .global or
+// not.
+
+function : bool getTrue() {
+  cout << "in getTrue()" << endl;
+  return true;
+}
+
+static bool b = getTrue();
+
+int i;
+
+function : void main() {
+  cout << "in main()" << endl;
+  ++i;
+
+  if (i == 1) { main(); }
+
+}
+

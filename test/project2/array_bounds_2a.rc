@@ -1,0 +1,12 @@
+// writing to an invalid location
+
+function : void main() {
+  int[9] ia;
+
+  int i;
+
+  for (i = 0; i < 10; ++i) {
+    ia[i] = i;
+  }
+
+}

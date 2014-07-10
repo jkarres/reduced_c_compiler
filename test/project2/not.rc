@@ -1,0 +1,18 @@
+// testing not
+
+function : void main() {
+  bool a = true;
+  bool b = false;
+
+  cout << 1 << " " << !true << endl;
+  cout << 2 << " " << !false << endl;
+
+  cout << 3 << " " << !a << endl;
+  cout << 4 << " " << !b << endl;
+
+  cout << 5 << " " << !!a << endl;
+  cout << 6 << " " << !!b << endl;
+
+  cout << 7 << " " << !(1 < 2) << endl;
+  cout << 8 << " " << !(true != false) << endl;
+}

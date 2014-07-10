@@ -1,0 +1,57 @@
+// test struct assignment and initialization
+
+structdef S {
+  int i;
+  float f;
+  bool[5] ba;
+
+  function : void print() {
+    cout << "<S";
+    cout << " i:" << this.i;
+    cout << " f:" << this.f;
+    cout << " ba:<";
+    int i;
+    for (i = 0 ;  ; ++i) {
+      cout << this.ba[i];
+      if (i == 4) { break; }
+      cout << " ";
+    }
+    cout << ">>" << endl;
+  }
+
+};
+
+S[2] sa;
+
+function : void main() {
+  cout << "sa[0]:";
+  sa[0].print();
+
+  cout << "s[1]:";
+  sa[1].print();
+
+  sa[0].i = 11;
+  sa[0].f = 3293.92;
+  sa[0].ba[0] = true;
+  sa[0].ba[1] = true;
+  sa[0].ba[2] = false;
+  sa[0].ba[3] = true;
+  sa[0].ba[4] = true;
+  
+  cout << "sa[0]:";
+  sa[0].print();
+
+  cout << "sa[1] = sa[0];" << endl;
+  sa[1] = sa[0];
+
+
+  cout << "sa[1]:";
+  sa[1].print();
+
+  cout << "Creating ls on the stack, initialized from sa[1]." << endl;
+  S ls = sa[1];
+  cout << "ls:";
+  ls.print();
+
+}
+

@@ -1,0 +1,20 @@
+// testing cout
+
+function : int i() {
+  cout << 3 << " " << "in i()" << endl;
+  return -123;
+}
+
+function : float f() {
+  cout << 4 << " " << "in f()" << endl;
+  return 1.2;
+}
+
+function : bool b() {
+  cout << 5 << " " << "in b()" << endl;
+  return false;
+}
+
+function : void main() {
+  cout << 6 << " " << i() << endl << f() << endl << b() << endl;
+}

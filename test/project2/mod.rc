@@ -1,0 +1,20 @@
+// testing %
+
+function : void main() {
+  int a = 10;
+  int b = 9;
+  int c = 8;
+
+  cout << 1 << " " << a % a << endl;
+  cout << 2 << " " << a % b << endl;
+  cout << 3 << " " << a % c << endl;
+
+  cout << 4 << " " << b % a << endl;
+  cout << 5 << " " << b % b << endl;
+  cout << 6 << " " << b % c << endl;
+
+  cout << 7 << " " << c % a << endl;
+  cout << 8 << " " << c % b << endl;
+  cout << 9 << " " << c % c << endl;
+}
+

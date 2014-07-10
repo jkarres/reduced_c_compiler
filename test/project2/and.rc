@@ -1,0 +1,68 @@
+// testing and
+
+function : bool rta() {
+  cout << 1 << " " << " (in rta) ";
+  return true;
+}
+
+function : bool rfa() {
+  cout << 2 << " " << " (in rfa) ";
+  return false;
+}
+
+function : bool rtb() {
+  cout << 3 << " " << " (in rtb) ";
+  return true;
+}
+
+function : bool rfb() {
+  cout << 4 << " " << " (in rfb) ";
+  return false;
+}
+
+function : bool rtc() {
+  cout << 5 << " " << " (in rtc) ";
+  return true;
+}
+
+function : bool rfc() {
+  cout << 6 << " " << " (in rfc) ";
+  return false;
+}
+
+function : bool rtd() {
+  cout << 7 << " " << " (in rtd) ";
+  return true;
+}
+
+function : bool rfd() {
+  cout << 8 << " " << " (in rfd) ";
+  return false;
+}
+
+function : void main() {
+  cout << 9 << " " << "true && true -> " << ( rta() && rtb()) << endl;
+  cout << 10 << " " << "true && false -> " << ( rta() && rfb()) << endl;
+  cout << 11 << " " << "false && true -> " << ( rfa() && rtb()) << endl;
+  cout << 12 << " " << "false && false -> " << ( rfa() && rfb()) << endl;  
+
+  cout << 13 << " " << endl;
+
+  cout << 14 << " " << "(t && t) && (t && t) -> " << (rta() && rtb()) && (rtc() && rtd()) << endl;
+  cout << 15 << " " << "(t && t) && (t && f) -> " << (rta() && rtb()) && (rtc() && rfd()) << endl;
+  cout << 16 << " " << "(t && t) && (f && t) -> " << (rta() && rtb()) && (rfc() && rtd()) << endl;
+  cout << 17 << " " << "(t && t) && (f && f) -> " << (rta() && rtb()) && (rfc() && rfd()) << endl;
+  cout << 18 << " " << "(t && f) && (t && t) -> " << (rta() && rfb()) && (rtc() && rtd()) << endl;
+  cout << 19 << " " << "(t && f) && (t && f) -> " << (rta() && rfb()) && (rtc() && rfd()) << endl;
+  cout << 20 << " " << "(t && f) && (f && t) -> " << (rta() && rfb()) && (rfc() && rtd()) << endl;
+  cout << 21 << " " << "(t && f) && (f && f) -> " << (rta() && rfb()) && (rfc() && rfd()) << endl;
+  cout << 22 << " " << "(f && t) && (t && t) -> " << (rfa() && rtb()) && (rtc() && rtd()) << endl;
+  cout << 23 << " " << "(f && t) && (t && f) -> " << (rfa() && rtb()) && (rtc() && rfd()) << endl;
+  cout << 24 << " " << "(f && t) && (f && t) -> " << (rfa() && rtb()) && (rfc() && rtd()) << endl;
+  cout << 25 << " " << "(f && t) && (f && f) -> " << (rfa() && rtb()) && (rfc() && rfd()) << endl;
+  cout << 26 << " " << "(f && f) && (t && t) -> " << (rfa() && rfb()) && (rtc() && rtd()) << endl;
+  cout << 27 << " " << "(f && f) && (t && f) -> " << (rfa() && rfb()) && (rtc() && rfd()) << endl;
+  cout << 28 << " " << "(f && f) && (f && t) -> " << (rfa() && rfb()) && (rfc() && rtd()) << endl;
+  cout << 29 << " " << "(f && f) && (f && f) -> " << (rfa() && rfb()) && (rfc() && rfd()) << endl;
+
+}

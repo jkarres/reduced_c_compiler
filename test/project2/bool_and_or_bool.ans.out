@@ -1,0 +1,56 @@
+1 true
+2 false
+3 in t()
+true
+4 in f()
+false
+5 false
+6 false
+7 false
+8 false
+9 in t()
+true
+10 in t()
+false
+11 in t()
+in t()
+true
+12 in t()
+in f()
+false
+13 in f()
+false
+14 in f()
+false
+15 in f()
+false
+16 in f()
+false
+17 true
+18 true
+19 true
+20 true
+21 true
+22 false
+23 in t()
+true
+24 in f()
+false
+25 in t()
+true
+26 in t()
+true
+27 in t()
+true
+28 in t()
+true
+29 in f()
+true
+30 in f()
+false
+31 in f()
+in t()
+true
+32 in f()
+in f()
+false

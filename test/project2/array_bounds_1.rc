@@ -1,0 +1,13 @@
+// reading and writing to proper places in an array
+
+function : void main() {
+  int[10] ia;
+
+  int i;
+
+  for (i = 0; i < 10; ++i) {
+    ia[i] = i;
+    cout << ia[i] << endl;
+  }
+
+}

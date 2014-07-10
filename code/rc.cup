@@ -1,0 +1,1208 @@
+
+import java_cup.runtime.*;
+import java.util.Vector;
+
+
+//--------------------------------------------------------------------
+//
+//--------------------------------------------------------------------
+
+parser code
+{:
+:};
+
+scan with {: return new Symbol (sym.EOF); :};
+
+//--------------------------------------------------------------------
+//
+//--------------------------------------------------------------------
+
+terminal
+    T_AMPERSAND,
+    T_AND,
+    T_ARROW,
+    T_ASSIGN,
+    T_BAR,
+    T_BOOL,
+    T_BREAK,
+    T_CARET,
+    T_CHAR,
+    T_CIN,
+    T_COLON,
+    T_COMMA,
+    T_CONST,
+    T_CONTINUE,
+    T_COUT,
+    T_DELETE,
+    T_DOT,
+    T_ELSE,
+    T_ENDL,
+    T_EQU,
+    T_EXIT,
+    T_EXTERN,
+    T_FALSE,
+    T_FLOAT,
+    T_FOR,
+    T_FUNCPTR,
+    T_FUNCTION,
+    T_GT,
+    T_GTE,
+    T_IF,
+    T_INT,
+    T_ISTREAM,
+    T_LBRACE,
+    T_LBRACKET,
+    T_LPAREN,
+    T_LT,
+    T_LTE,
+    T_MINUS,
+    T_MINUSMINUS,
+    T_MOD,
+    T_NEQ,
+    T_NEW,
+    T_NOT,
+    T_NULL,
+    T_OR,
+    T_OSTREAM,
+    T_PLUS,
+    T_PLUSPLUS,
+    T_RBRACE,
+    T_RBRACKET,
+    T_RETURN,
+    T_RPAREN,
+    T_SEMI,
+    T_SIZEOF,
+    T_SLASH,
+    T_STAR,
+    T_STATIC,
+    T_STRUCTDEF,
+    T_THIS,
+    T_TRUE,
+    T_TYPEDEF,
+    T_WHILE,
+    T_VOID
+    ;
+
+terminal String
+    T_CHAR_LITERAL,
+    T_FLOAT_LITERAL,
+    T_INT_LITERAL,
+    T_STR_LITERAL,
+    T_ID_U,
+    T_ID
+    ;
+
+
+//--------------------------------------------------------------------
+//
+//--------------------------------------------------------------------
+
+non terminal
+    WritePairList,
+    Program,
+    OptGlobalDecls,
+    GlobalDecls,
+    GlobalDecl,
+    FuncDef,
+    FuncDecl,
+    ExternDecl,
+    VarDecl,
+    ConstDecl,
+    TypedefDecl,
+    FieldsList,
+    FieldList,
+    OptStmtList,
+    StmtList,
+    Stmt,
+    CodeBlock,
+    ForCodeBlock,
+    IfStmt,
+    OptElse,
+    ForStmt,
+    WhileStmt,
+    BreakStmt,
+    ContinueStmt,
+    ExitStmt,
+    ReturnStmt,
+    ReadStmt,
+    WriteStmt,
+    NewStmt,
+    DeleteStmt
+    ;
+
+non terminal Boolean
+   OptStatic
+   ;
+
+non terminal Vector<ExprOrReportedErr>
+    OptExprList,
+    ExprList
+    ;
+
+non terminal Boolean
+    OptRef
+    ;
+
+non terminal Integer
+    OptModifierList,
+    ModifierList,
+    Modifier
+    ;
+
+non terminal IntValueOrNothingOrReportedErr
+    OptArrayDef
+    ;
+
+non terminal Operator
+    Equality,
+    Relation,
+    AddOp,
+    MulOp,
+    ModOp,
+    IncDecOp,
+    UnarySign
+    ;
+
+non terminal ParamDeclOrReportedErr
+    ParamDecl
+    ;
+
+non terminal ExprOrReportedErr
+    OptExpr,
+    Expr,
+    Expr0,
+    Expr1,
+    Expr2,
+    Expr3,
+    Expr4,
+    Expr5,
+    Expr6,
+    Expr7,
+    Expr8,
+    Designator,
+    Designator2,
+    Designator3,
+    WritePair
+    ;
+
+non terminal ConstExprOrConstErrOrReportedErr
+    ConstExpr
+    ;
+
+non terminal Type
+    BasicType
+    ;
+
+non terminal TypeOrReportedErr
+    ReturnType,
+    Type,
+    SubType,
+    QualIdent
+    ;
+
+non terminal Vector<NameConstExprOrErrPair>
+    IdListWInit
+    ;
+
+non terminal Vector<ParamDeclOrReportedErr>
+    OptParamList,
+    ParamList
+    ;
+
+non terminal Vector<String>
+    IdListUpper,
+    IdList
+    ;
+
+non terminal Vector<NameExprOrNothingOrReportedErrPair>
+    IdListWOptInit
+    ;
+
+non terminal ExprOrNothingOrReportedErr
+    OptInit
+    ;
+
+//--------------------------------------------------------------------
+//
+//--------------------------------------------------------------------
+
+Program ::=    {:
+                    ((MyParser) parser).DoProgramStart();
+               :}
+               OptGlobalDecls
+               {:
+                    ((MyParser) parser).DoProgramEnd();
+               :}
+    ;
+
+OptGlobalDecls ::=  GlobalDecls
+    |                     /* empty */
+    ;
+
+GlobalDecls ::= GlobalDecl
+    |               GlobalDecls GlobalDecl
+    ;
+
+
+GlobalDecl ::=  ExternDecl
+    |               VarDecl
+    |               ConstDecl
+    |               TypedefDecl
+    |               FuncDecl
+    |               FuncDef
+    ;
+
+ExternDecl ::= T_EXTERN Type:_2 IdList:_3 T_SEMI
+                    {:
+                         ((MyParser) parser).DoExternDecl (_3, _2);
+                    :}
+    ;
+
+VarDecl ::=         OptStatic:_1 
+                    {:
+                       ((MyParser)parser).doStatic(_1);
+                    :}
+                    Type:_2 IdListWOptInit:_3 T_SEMI
+                    {:
+                    
+                         ((MyParser) parser).DoVarDecl(_3, _2);
+                    :}
+    ;
+
+ConstDecl ::=       OptStatic:_1
+                    {:
+                        ((MyParser)parser).doStatic(_1);
+                    :}
+                    T_CONST Type:_2 IdListWInit:_3 T_SEMI
+                    {:
+                        ((MyParser) parser).DoConstDecl(_3, _2);
+                    :}
+    ;
+
+
+OptStatic ::=   T_STATIC {: RESULT = true; :}
+    |               /* empty */ {: RESULT = false; :}
+    ;
+
+
+TypedefDecl ::=     T_TYPEDEF Type:_1 IdListUpper:_2 T_SEMI
+                    {:
+                        ((MyParser) parser).DoTypedefDecl (_2, _1);
+                    :}
+    |               T_STRUCTDEF T_ID_U:_1 T_LBRACE
+                    {:
+                        ((MyParser) parser).beginStruct(_1);
+                    :}
+                    FieldsList T_RBRACE T_SEMI
+                    {:
+                         StructScope structScope = ((MyParser) parser).endStruct();
+                         ((MyParser) parser).DoStructdefDecl (_1, structScope);
+                    :}
+    ;
+
+
+FieldsList ::=      FieldList
+    |               FieldsList FieldList
+    ;
+
+
+FieldList ::=       Type:_1 IdList:_2 T_SEMI
+                    {:
+                        ((MyParser) parser).doFieldDecl(_2, _1);
+                    :}
+
+    |               FuncDef /* should be added to scope by child rule */
+    ;
+
+
+FuncDef ::=         T_FUNCTION T_COLON ReturnType:_1 T_ID:_2
+                    {:
+                        ((MyParser) parser).SaveLineNum();
+                    :}
+                    T_LPAREN OptParamList:_3 T_RPAREN
+                    {:
+                        ((MyParser) parser).beginFuncDecl(_1, _2, _3);
+                    :}
+                    T_LBRACE OptStmtList T_RBRACE
+                    {:
+                        ((MyParser) parser).DoFuncDecl_2();
+                    :}
+    ;
+
+
+FuncDecl ::=        T_EXTERN T_FUNCTION T_COLON ReturnType:_1 T_ID:_2
+                    T_LPAREN OptParamList:_3 T_RPAREN
+                    {:
+                        ((MyParser) parser).doExternFunc(_1, _2, _3);
+                    :}
+                    T_SEMI
+    ;
+
+
+Type ::=            SubType:_1 OptModifierList:_2 OptArrayDef:_3
+                    {:
+                        if (_1 instanceof Type) {
+
+                            RESULT = (Type)_1;
+
+                            for (int i = 0; i < _2; ++i) {
+                                RESULT = new PointerType((Type)RESULT);
+                            }
+    
+                            if (_3 instanceof Nothing) {
+                                // nothing
+                            } else if (_3 instanceof IntValue) {
+                                IntValue dim = (IntValue)_3;
+                                RESULT = new ArrayType(dim.getValue(), (Type)RESULT);
+                            } else if (_3 instanceof ReportedErr) {
+                                RESULT = (ReportedErr)_3;
+                            } else {
+                                assert false;
+                            }
+
+                        } else if (_1 instanceof ReportedErr) {
+                            RESULT = (ReportedErr)_1;
+                        } else {
+                            assert false;
+                        }
+
+                    :}
+    |               T_FUNCPTR T_COLON ReturnType:_1 T_LPAREN OptParamList:_3 T_RPAREN
+                    {:
+
+                        ReportedErr theErr = null;
+
+                        if (_1 instanceof ReportedErr) {
+                            theErr = (ReportedErr)_1;
+                        } else {
+                            for (ParamDeclOrReportedErr pd : _3) {
+                                if (pd instanceof ReportedErr) {
+                                    theErr = (ReportedErr)pd;
+                                    break;
+                                }
+                            }
+                        }
+
+                        if (theErr == null) {
+                            Vector<ParamDecl> paramTypes = new Vector<ParamDecl>();
+                            for (ParamDeclOrReportedErr pd : _3)
+                              paramTypes.add((ParamDecl)pd);
+                            RESULT = new FunctionType((Type)_1, paramTypes);
+                        } else {
+                            RESULT = theErr;
+                        }
+                    :}
+    ;
+
+
+SubType ::=         QualIdent:_1 {: RESULT = _1; :}
+    |               BasicType:_1 {: RESULT = _1; :}
+    ;
+
+
+BasicType ::=       T_INT {: RESULT = new IntType(); :}
+    |               T_FLOAT {: RESULT = new FloatType(); :}
+    |               T_BOOL {: RESULT = new BooleanType(); :}
+    |               T_CHAR {: RESULT = new CharType(); :}
+    ;
+
+
+OptModifierList ::= ModifierList:_1 {: RESULT = _1; :}
+    |               /* empty */ {: RESULT = 0; :}
+    ;
+
+
+/* returns number of stars */
+ModifierList ::=    Modifier {: RESULT = 1; :}
+    |               ModifierList:_1 Modifier:_2 {: RESULT = _1 + _2; :}
+    ;
+
+
+Modifier ::=        T_STAR {: RESULT = 1; :}
+    ;
+
+
+OptArrayDef ::=     T_LBRACKET ConstExpr:_2 T_RBRACKET 
+                    {:
+                        RESULT = ((MyParser)parser).checkArrayDef(_2);
+                    :}
+    |               /* empty */ {: RESULT = new Nothing(); :}
+    ;
+
+
+ReturnType ::=      SubType:_1 OptModifierList:_2
+                    {:
+                        if (_1 instanceof Type) {
+                            Type rt = (Type)_1;
+                            for (int i = 0; i < _2; ++i)
+                                rt = new PointerType(rt);
+                            RESULT = rt;
+                        } else if (_1 instanceof ReportedErr) {
+                            RESULT = (ReportedErr)_1;
+                        } else {
+                            assert false;
+                        }
+                    :}
+    |               T_VOID {: RESULT = new VoidType(); :}
+    ;
+
+
+CodeBlock ::=       T_LBRACE
+                    {: ((MyParser) parser).DoBlockOpen(); :}
+                    OptStmtList
+                    {: ((MyParser) parser).DoBlockClose(); :}
+                    T_RBRACE
+    ;
+
+
+OptStmtList ::=     StmtList
+    |               /* empty */
+    ;
+
+
+StmtList ::=        Stmt
+    |               StmtList Stmt
+    ;
+
+
+Stmt ::=        VarDecl
+    |               ConstDecl
+    |               TypedefDecl
+    |               CodeBlock
+    |               Expr T_SEMI
+    |               IfStmt
+    |               WhileStmt
+    |               ForStmt
+    |               BreakStmt
+    |               ContinueStmt
+    |               ExitStmt
+    |               ReturnStmt
+    |               ReadStmt
+    |               WriteStmt
+    |               NewStmt
+    |               DeleteStmt
+    ;
+
+
+OptParamList ::=    ParamList:_1 {: RESULT = _1; :}
+    |               /* empty */  {: RESULT = new Vector<ParamDeclOrReportedErr>(); :}
+    ;
+
+
+ParamList ::=       ParamDecl:_1 
+                    {: RESULT = new Vector<ParamDeclOrReportedErr>(); RESULT.add(_1); :}
+
+    |               ParamList:_1 T_COMMA ParamDecl:_3
+                    {: RESULT = _1; RESULT.add(_3); :}
+    ;
+
+
+ParamDecl ::=       Type:_1 OptRef:_2 T_ID:_3
+                    {: 
+                       if (_1 instanceof Type) {
+                           RESULT = new ParamDecl((Type)_1, _3, _2);
+                       } else if (_1 instanceof ReportedErr) {
+                           RESULT = (ReportedErr)_1;
+                       } else  {
+                           assert false;
+                       }
+                    :}
+    ;
+
+
+OptRef ::=          T_AMPERSAND {: RESULT = true; :}
+    |               /* empty */ {: RESULT = false; :}
+    ;
+
+
+IdList ::=          T_ID:_1
+                    {:
+                        RESULT = new Vector<String>();
+                        RESULT.addElement(_1);
+                    :}
+    |               IdList:_1 T_COMMA T_ID:_3
+                    {:
+                        RESULT = _1;
+                        RESULT.addElement (_3);
+                    :}
+    ;
+
+
+IdListUpper ::=     T_ID_U:_1
+                    {:
+                        RESULT = new Vector ();
+                        RESULT.addElement (_1);
+                    :}
+    |               IdListUpper:_1 T_COMMA T_ID_U:_3
+                    {:
+                        RESULT = _1;
+                        RESULT.addElement (_3);
+                    :}
+    ;
+
+
+IdListWOptInit ::=  T_ID:_1 OptInit:_2
+                    {:
+                        RESULT = new Vector<NameExprOrNothingOrReportedErrPair>();
+                        RESULT.addElement(new NameExprOrNothingOrReportedErrPair(_1, _2));
+                    :}
+    |               IdListWOptInit:_1 T_COMMA T_ID:_2 OptInit:_3
+                    {:
+                        RESULT = _1;
+                        RESULT.addElement(new NameExprOrNothingOrReportedErrPair(_2, _3));
+                    :}
+    ;
+
+IdListWInit ::=     T_ID:_1 T_ASSIGN ConstExpr:_3
+                    {:
+                        RESULT = new Vector<NameConstExprOrErrPair>();
+                        RESULT.addElement(new NameConstExprOrErrPair(_1, _3));
+                    :}
+    |               IdListWInit:_1 T_COMMA T_ID:_3 T_ASSIGN ConstExpr:_5
+                    {:
+                        RESULT = _1;
+                        RESULT.addElement(new NameConstExprOrErrPair(_3, _5));
+                    :}
+    ;
+
+
+OptInit ::=         T_ASSIGN Expr:_1 {: /*System.out.println("expr in optinit: " + _1)*/; RESULT = _1; :}
+    |               /* empty */      {: /*System.out.println("empty optinit")*/; RESULT = new Nothing(); :}
+    ;
+
+
+IfStmt ::=          T_IF Expr:_2
+                    {:
+                        if (_2 instanceof Expr) {
+                            ((MyParser) parser).checkConditional((Expr)_2);
+                            ((MyParser) parser).doIfAfterCondition((Expr)_2);
+                        }
+                    :}
+                    CodeBlock 
+                    {:
+                        ((MyParser)parser).doIfAfterThen();
+                    :}
+                    OptElse
+                    {:
+                        ((MyParser)parser).doIfAfterElse();
+                    :}
+    ;
+
+
+OptElse ::=         T_ELSE CodeBlock
+    |               /* empty */
+    ;
+
+
+WhileStmt ::=       T_WHILE Expr CodeBlock
+    ;
+
+
+ForCodeBlock ::=    T_LBRACE
+                    {: ((MyParser) parser).beginForBlock(); :}
+                    OptStmtList
+                    {: ((MyParser) parser).endForBlock(); :}
+                    T_RBRACE
+    ;
+
+
+ForStmt ::=        T_FOR T_LPAREN OptExpr:_1
+                   {:
+                       ((MyParser)parser).doFor1();
+                   :}
+                   T_SEMI OptExpr:_2
+                   {:
+                       if (_2 != null && _2 instanceof Expr) {
+                           ((MyParser) parser).checkConditional((Expr)_2);
+                       }
+
+                       ((MyParser)parser).doFor2(_2);
+
+                   :}
+                   T_SEMI OptExpr:_3 T_RPAREN
+                   {:
+                       ((MyParser)parser).doFor3();
+                   :}
+                   ForCodeBlock
+                   {:
+                       ((MyParser)parser).doFor4();
+                   :} 
+
+    ;
+
+
+BreakStmt ::=       T_BREAK {: ((MyParser)parser).checkBreak(); :} T_SEMI
+    ;
+
+
+ContinueStmt ::=    T_CONTINUE {: ((MyParser)parser).checkContinue(); :}  T_SEMI
+    ;
+
+
+ExitStmt ::=        T_EXIT T_LPAREN Expr:_1 T_RPAREN T_SEMI
+                    {:
+                        if (_1 instanceof Expr) {
+                            ((MyParser) parser).checkExit((Expr)_1);
+                        } else if (_1 instanceof ReportedErr) {
+                            
+                        } else {
+                            assert false;
+                        }
+                    :}
+    ;
+
+
+ReturnStmt ::=      T_RETURN T_SEMI {: ((MyParser) parser).checkPlainReturn(); :}
+    |               T_RETURN Expr:_1 T_SEMI 
+                    {:
+                        if (_1 instanceof Expr) {
+                            ((MyParser) parser).checkReturn((Expr)_1);
+                        } else if (_1 instanceof ReportedErr) {
+                            ((MyParser) parser).doBadReturn();
+                        } else {
+                            assert false;
+                        }
+                    :}
+    ;
+
+
+ReadStmt ::=        T_CIN T_ISTREAM Designator:_1 T_SEMI
+                    {:
+                      if (_1 instanceof Expr) ((MyParser)parser).read((Expr)_1);
+                    :}
+    ;
+
+
+WriteStmt ::=       T_COUT T_OSTREAM WritePairList:_1 T_SEMI
+                    {:
+                    :}
+    ;
+
+
+WritePairList ::=   WritePair:_1
+                    {: 
+                        ((MyParser)parser).write(_1);
+                    :}
+    |               WritePairList:_1 T_OSTREAM WritePair:_2
+                    {:
+                        ((MyParser)parser).write(_2);
+                    :}
+    ;
+
+
+WritePair ::=    Expr:_1 {: RESULT = _1; :}
+    |               T_ENDL {: RESULT =  new CRV(new StringValue("\\n")); :}
+    ;
+
+
+ConstExpr ::=    Expr:_1
+                 {: 
+                     if (_1 instanceof ConstExpr) {
+                         RESULT = (ConstExpr)_1;
+                     } else if (_1 instanceof Expr) {
+                         RESULT = new ConstErr(((Expr)_1).getType());
+                     } else if (_1 instanceof ReportedErr) {
+                         RESULT = (ReportedErr)_1;
+                     }
+                 :}
+    ;
+
+
+OptExprList ::=     ExprList:_1 {: RESULT = _1; :}
+    |               /* empty */ {: RESULT = new Vector<ExprOrReportedErr>(); :}
+    ;
+
+
+ExprList ::=        Expr:_1 {: RESULT = new Vector<ExprOrReportedErr>(); RESULT.add(_1); :}
+    |               ExprList:_1 T_COMMA Expr:_2 {: RESULT = _1; RESULT.add(_2); :}
+    ;
+
+OptExpr ::=        Expr:_1 {: RESULT = _1; :}
+    |              /* empty */ {: RESULT = null; :}
+    ;
+
+
+Expr ::=            Designator:_1 T_ASSIGN Expr:_3
+                    {:
+                        //System.out.println("In assignment rule.  _1: " + _1 + "; _3: " + _3);
+                        if (_1 instanceof Expr && _3 instanceof Expr) {
+                            RESULT = ((MyParser) parser).doAssignExpr((Expr)_1, (Expr)_3);
+                        } else if (_1 instanceof ReportedErr) {
+                            RESULT = _1;
+                        } else if (_3 instanceof ReportedErr) {
+                            RESULT = _3;
+                        } else {
+                            assert false;
+                        }
+                    :}
+    |               Expr0:_1
+                    {:
+                        RESULT = _1;
+                    :}
+    ;
+
+
+Expr0 ::=           Expr0:_1 T_OR 
+                    {:
+                        if (_1 instanceof Expr) {
+                            ((MyParser)parser).doHalfOr((Expr)_1);
+                        }
+      
+                    :}
+                    Expr1:_3
+                    {:
+                        if (_1 instanceof Expr && _3 instanceof Expr) {
+                            RESULT = ((MyParser) parser).doOr((Expr)_1, (Expr)_3);
+                        } else if (_1 instanceof ReportedErr) {
+                            RESULT = _1;
+                        } else if (_3 instanceof ReportedErr) {
+                            RESULT = _3;
+                        } else {
+                            assert false;
+                        }
+                    :}
+    |               Expr1:_1
+                    {:
+                        RESULT = _1;
+                    :}
+    ;
+
+
+Expr1 ::=           Expr1:_1 T_AND 
+                    {:
+                        if (_1 instanceof Expr) {
+                            ((MyParser)parser).doHalfAnd((Expr)_1);
+                        } 
+                    :}
+                    Expr2:_3
+                    {:
+                        if (_1 instanceof Expr && _3 instanceof Expr) {
+                            RESULT = ((MyParser) parser).doAnd((Expr)_1, (Expr)_3);
+                        } else if (_1 instanceof ReportedErr) {
+                            RESULT = _1;
+                        } else if (_3 instanceof ReportedErr) {
+                            RESULT = _3;
+                        } else {
+                            assert false;
+                        }
+                    :}
+    |               Expr2:_1
+                    {:
+                        RESULT = _1;
+                    :}
+    ;
+
+
+Expr2 ::=           Expr2:_1 T_BAR Expr3:_3
+                    {:
+                        if (_1 instanceof Expr && _3 instanceof Expr) {
+                            RESULT = ((MyParser) parser).doBCA((Expr)_1, Operator.BAR, (Expr)_3);
+                        } else if (_1 instanceof ReportedErr) {
+                            RESULT = _1;
+                        } else if (_3 instanceof ReportedErr) {
+                            RESULT = _3;
+                        } else {
+                            assert false;
+                        }
+
+                    :}
+    |               Expr3:_1
+                    {:
+                        RESULT = _1;
+                    :}
+    ;
+
+
+Expr3 ::=           Expr3:_1 T_CARET Expr4:_3
+                    {:
+
+                        if (_1 instanceof Expr && _3 instanceof Expr) {
+                            RESULT = ((MyParser) parser).doBCA((Expr)_1, Operator.CARET, (Expr)_3);
+                        } else if (_1 instanceof ReportedErr) {
+                            RESULT = _1;
+                        } else if (_3 instanceof ReportedErr) {
+                            RESULT = _3;
+                        } else {
+                            assert false;
+                        }
+                    :}
+    |               Expr4:_1
+                    {:
+                        RESULT = _1;
+                    :}
+    ;
+
+
+Expr4 ::=           Expr4:_1 T_AMPERSAND Expr5:_3
+                    {:
+                        if (_1 instanceof Expr && _3 instanceof Expr) {
+                            RESULT = ((MyParser) parser).doBCA((Expr)_1, Operator.AMPERSAND, (Expr)_3);
+                        } else if (_1 instanceof ReportedErr) {
+                            RESULT = _1;
+                        } else if (_3 instanceof ReportedErr) {
+                            RESULT = _3;
+                        } else {
+                            assert false;
+                        }
+
+                    :}
+    |               Expr5:_1
+                    {:
+                        RESULT = _1;
+                    :}
+    ;
+
+
+Expr5 ::=           Expr5:_1 Equality:_2 Expr6:_3
+                    {:
+                        if (_1 instanceof Expr && _3 instanceof Expr) {
+                            RESULT = ((MyParser) parser).doEqualityOp((Expr)_1, _2, (Expr)_3);
+                        } else if (_1 instanceof ReportedErr) {
+                            RESULT = _1;
+                        } else if (_3 instanceof ReportedErr) {
+                            RESULT = _3;
+                        } else {
+                            assert false;
+                        }
+                    :}
+    |               Expr6:_1
+                    {:
+                        RESULT = _1;
+                    :}
+    ;
+
+
+Expr6 ::=           Expr6:_1 Relation:_2 Expr7:_3
+                    {:
+                        if (_1 instanceof Expr && _3 instanceof Expr) {
+                            RESULT = ((MyParser) parser).doRelationOp((Expr)_1, _2, (Expr)_3);
+                        } else if (_1 instanceof ReportedErr) {
+                            RESULT = _1;
+                        } else if (_3 instanceof ReportedErr) {
+                            RESULT = _3;
+                        } else {
+                            assert false;
+                        }
+                    :}
+    |               Expr7:_1
+                    {:
+                        RESULT = _1;
+                    :}
+    ;
+
+
+Expr7 ::=           Expr7:_1 AddOp:_2 Expr8:_3
+                    {:
+                        if (_1 instanceof Expr && _3 instanceof Expr) {
+                            RESULT = ((MyParser) parser).doAddMulOp((Expr)_1, _2, (Expr)_3);
+                        } else if (_1 instanceof ReportedErr) {
+                            RESULT = _1;
+                        } else if (_3 instanceof ReportedErr) {
+                            RESULT = _3;
+                        } else {
+                            assert false;
+                        }
+                    :}
+    |               Expr8:_1
+                    {:
+                        RESULT = _1;
+                    :}
+    ;
+
+
+Expr8 ::=           Expr8:_1 MulOp:_2 Designator:_3
+                    {:
+                        if (_1 instanceof Expr && _3 instanceof Expr) {
+                            RESULT = ((MyParser) parser).doAddMulOp((Expr)_1, _2, (Expr)_3);
+                        } else if (_1 instanceof ReportedErr) {
+                            RESULT = _1;
+                        } else if (_3 instanceof ReportedErr) {
+                            RESULT = _3;
+                        } else {
+                            assert false;
+                        }
+                    :}
+    |               Expr8:_1 ModOp:_2 Designator:_3
+                    {:
+                        if (_1 instanceof Expr && _3 instanceof Expr) {
+                            RESULT = ((MyParser) parser).doMod((Expr)_1, _2, (Expr)_3);
+                        } else if (_1 instanceof ReportedErr) {
+                            RESULT = _1;
+                        } else if (_3 instanceof ReportedErr) {
+                            RESULT = _3;
+                        } else {
+                            assert false;
+                        }
+                        
+                    :}
+    |               Designator:_1
+                    {:
+                        RESULT = _1;
+                    :}
+    ;
+
+
+Equality ::=        T_EQU {: RESULT = Operator.EQU; :}
+    |               T_NEQ {: RESULT = Operator.NEQ; :}
+    ;
+
+
+Relation ::=        T_LT {: RESULT = Operator.LT; :}
+    |               T_GT {: RESULT = Operator.GT; :}
+    |               T_LTE {: RESULT = Operator.LTE; :}
+    |               T_GTE {: RESULT = Operator.GTE; :}
+    ;
+
+
+AddOp ::=           T_PLUS
+                    {:
+                        RESULT = Operator.PLUS;
+                    :}
+    |               T_MINUS
+                    {:
+                        RESULT = Operator.MINUS;
+                    :}
+    ;
+
+
+ModOp ::=           T_MOD {: RESULT = Operator.MOD; :}
+                    ;
+
+MulOp ::=           T_STAR
+                    {:
+                        RESULT = Operator.STAR;
+                    :}
+    |               T_SLASH
+                    {:
+                        RESULT = Operator.SLASH;
+                    :}
+    ;
+
+
+IncDecOp ::=        T_PLUSPLUS
+                    {:
+                        RESULT = Operator.PLUSPLUS;
+                    :}
+    |               T_MINUSMINUS
+                    {:
+                        RESULT = Operator.MINUSMINUS;
+                    :}
+    ;
+
+
+Designator ::=      T_STAR Designator:_1
+                    {:
+                        if (_1 instanceof Expr) {
+                            RESULT = ((MyParser)parser).dereference((Expr)_1);
+                        } else if (_1 instanceof ReportedErr) {
+                            RESULT = _1;
+                        } else {
+                            assert false;
+                        }
+                    :}
+    |               T_AMPERSAND Designator:_1
+                    {:
+                        if (_1 instanceof Expr) {
+                          RESULT = ((MyParser)parser).getAddress((Expr)_1);
+                        } else if (_1 instanceof ReportedErr) {
+                          RESULT = _1;
+                        } else {
+                          assert false;
+                        }
+                    :}
+    |               UnarySign:_1 Designator:_2
+                    {:
+                        RESULT = ((MyParser)parser).doUnarySign(_1, _2);
+                    :}
+    |               T_NOT Designator:_1
+                    {:
+                        if (_1 instanceof Expr) {
+                            RESULT = ((MyParser) parser).doNot((Expr)_1);
+                        } else if (_1 instanceof ReportedErr) {
+                            RESULT = _1;
+                        } else {
+                            assert false;
+                        }
+                    :}
+    |               T_SIZEOF T_LPAREN Designator:_2 T_RPAREN
+                    {:
+                        RESULT = ((MyParser)parser).doSizeof(_2);
+                    :}
+    |               T_SIZEOF T_LPAREN Type:_2 T_RPAREN
+                    {:
+                        RESULT = ((MyParser)parser).doSizeof(_2);
+                    :}
+    |               T_LPAREN Type:_1 T_RPAREN Designator:_2
+                    {:
+                        if (_1 instanceof Type && _2 instanceof Expr) {
+                          RESULT = ((MyParser)parser).doCast((Type)_1, (Expr)_2);
+                        } else if (_1 instanceof ReportedErr) {
+                          RESULT = (ReportedErr)_1;
+                        } else if (_2 instanceof ReportedErr) {
+                          RESULT = (ReportedErr)_2;
+                        } else {
+                          assert false;
+                        }
+                    :}
+    |               IncDecOp:_1 Designator:_2
+                    {:
+                        if (_2 instanceof Expr) {
+                            RESULT = ((MyParser) parser).doPreIncDecOp(_1, (Expr)_2);
+                        } else if (_2 instanceof ReportedErr) {
+                            RESULT = _2;
+                        } else {
+                            assert false;
+                        }
+                    :}
+    |               Designator2:_1
+                    {:
+                        RESULT = _1;
+                    :}
+    ;
+
+
+Designator2 ::=     Designator2:_1 T_DOT T_ID:_3
+                    {: 
+                       //System.out.println("in T_DOT rule; _1: " + _1 + "; _3: " + _3);
+                       if (_1 instanceof Expr) {
+                           RESULT = ((MyParser) parser).DoDesignator2_Dot((Expr)_1, _3); 
+                       } else if (_1 instanceof ReportedErr) {
+                           RESULT = _1;
+                       } else {
+                           assert false;
+                       }
+                       //System.out.println("RESULT: " + RESULT);
+                    :}
+
+    |               Designator2:_1 T_LBRACKET Expr:_2 T_RBRACKET
+                    {: 
+                       if (_1 instanceof Expr) {
+                           if (_2 instanceof Expr) {
+                               RESULT = ((MyParser) parser).DoDesignator2_Array((Expr)_1, (Expr)_2); 
+                           } else if (_1 instanceof ReportedErr) {
+                               RESULT = (ReportedErr)_1;
+                           } else {
+                               assert false;
+                           }
+                       } else if (_1 instanceof ReportedErr) {
+                           RESULT = _1;
+                       } else {
+                           assert false;
+                       }
+                    :}
+
+    |               Designator2:_1 T_ARROW T_ID:_3
+                    {:
+                        if (_1 instanceof Expr) {
+                           RESULT = ((MyParser)parser).doArrow((Expr)_1, _3);
+                        } else if (_1 instanceof ReportedErr) {
+                            RESULT = _1;
+                        } else {
+                            assert false;
+                        }
+                    :}
+    |               Designator2:_1 IncDecOp:_2
+                    {: 
+                        if (_1 instanceof Expr) {
+                            RESULT = ((MyParser) parser).doPostIncDecOp(_2, (Expr)_1);
+                        } else if (_1 instanceof ReportedErr) {
+                            RESULT = _1;
+                        } else {
+                            assert false;
+                        }
+                    :}
+
+    |               Designator2:_1 T_LPAREN OptExprList:_2 T_RPAREN
+                    {: 
+                       if (_1 instanceof Expr) {
+                           ReportedErr re = null;
+                           Vector<Expr> args = new Vector<Expr>();
+                           for (ExprOrReportedErr eore : _2) {
+                               if (eore instanceof Expr) {
+                                   args.add((Expr)eore);
+                               } else if (eore instanceof ReportedErr) {
+                                   re = (ReportedErr) eore;
+                                   break;
+                               } else {
+                                   assert false;
+                               }
+                           }
+                           if (re == null) {
+                               RESULT = ((MyParser) parser).DoFuncCall((Expr)_1, args);
+                           } else {
+                               RESULT = re;
+                           }
+                       } else if (_1 instanceof ReportedErr) {
+                           RESULT = _1;
+                       } else {
+                           assert false;
+                       }
+                    :}
+
+    |               Designator3:_1
+                    {: RESULT = _1; :}
+    ;
+
+
+Designator3 ::=     T_LPAREN Expr:_2 T_RPAREN
+                    {: RESULT = _2; :}
+
+    |               T_INT_LITERAL:_1
+                    {: RESULT = new CRV(new IntValue(Integer.valueOf(_1))); :}
+
+    |               T_FLOAT_LITERAL:_1
+                    {: RESULT = new CRV(new FloatValue(Float.valueOf(_1))); :}
+
+    |               T_CHAR_LITERAL:_1
+                    {: RESULT = new CRV(new CharValue(_1.charAt(0))); :}
+
+    |               T_STR_LITERAL:_1
+                    {: RESULT = new CRV(new StringValue(_1)); :}
+
+    |               T_TRUE
+                    {: RESULT = new CRV(new BooleanValue(true)); :}
+
+    |               T_FALSE
+                    {: RESULT = new CRV(new BooleanValue(false)); :}
+
+    |               T_NULL
+                    {: RESULT = new CRV(new NullValue()); :}
+
+    |               T_THIS
+                    {: RESULT = ((MyParser)parser).getThis(); :}
+
+    |               T_ID:_1
+                    {: RESULT = ((MyParser) parser).DoDesignator3_ID(_1); :}
+    ;
+
+
+QualIdent ::=       T_ID_U:_1 {: RESULT = ((MyParser) parser).DoQualIdent(_1); :}
+    ;
+
+NewStmt ::=         T_NEW Designator:_1 T_SEMI
+                    {:
+                      if (_1 instanceof Expr) {
+                        ((MyParser)parser).doNew((Expr)_1);
+                      } else if (_1 instanceof ReportedErr) {
+
+                      } else {
+                        assert false;
+                      }
+                    :}
+    ;
+
+DeleteStmt ::=      T_DELETE Designator:_1 T_SEMI
+                    {:
+                      if (_1 instanceof Expr) {
+                        ((MyParser)parser).doDelete((Expr)_1);
+                      } else if (_1 instanceof ReportedErr) {
+
+                      } else {
+                        assert false;
+                      }
+                    :}
+   ;
+
+UnarySign ::=       T_PLUS {: RESULT = Operator.PLUS; :} 
+    |               T_MINUS {: RESULT = Operator.MINUS; :}
+    ;

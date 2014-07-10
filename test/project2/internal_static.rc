@@ -1,0 +1,161 @@
+
+// this is here to let us know that a variable is being initialized
+function : int getThree() {
+    cout << "in getThree()" << endl;
+    return 3;
+}
+
+// check that we don't bleed into adjacent declarations
+function : void a() {
+
+    cout << "begin a()" << endl;
+
+    int i;
+    for (i = 0; i < 2; ++i) {
+        cout << "i is " << i << endl;
+
+        cout << "declaring a and b" << endl;
+        int a = getThree(), b = getThree();
+
+        cout << "declaring c and d (static)" << endl;
+        static int c = getThree(), d = getThree();
+
+        cout << "declaring e and f" << endl;
+        int e = getThree(), f = getThree();
+
+        cout << "declaring g (static)" << endl;
+        static int g = getThree();
+    }
+
+    cout << "end a()" << endl << endl;
+
+}
+
+// make sure that static variables stay initalized across function calls
+// (call this one from main)
+function : void c() {
+    cout << "begin c()" << endl;
+    a();
+    a();
+    cout << "end c()" << endl << endl;
+}
+
+// make sure you can get a useful pointer to the thing (one that doesn't disappear)
+function : int * d() {
+    static int i;
+    return &i;
+}
+
+// this is here just to overwrite the stack.  of course the retval is
+// useless -- i just want to make this just like d()
+function : int * f() {
+    int i = 12345;
+    return &i;
+}
+
+
+// call this one from main
+function : void e() {
+    cout << "begin e()" << endl;
+
+    // get the pointer
+    int * i = d();
+
+    cout << "this should be zero: " << *i << endl;
+
+    (*i)++;
+
+    cout << "this should be one: " << *i << endl;
+
+    // write over the stack space that was used for the call to d:
+    f();
+
+    cout << "this should still be one: " << *i << endl;
+
+    (*i)++;
+
+    cout << "and this should be two: " << *d() << endl;
+
+
+    cout << "and d() and i should be equal: " << d() == i << endl;
+
+    cout << "end e()" << endl << endl;
+
+}
+
+function : int g() {
+    cout << "in g()" << endl;
+    static int i = 10;
+    return i;
+}
+
+function : int h() {
+    cout << "in h()" << endl;
+    static int i = g();
+    return i;
+}
+
+function : int i() {
+    cout << "in i()" << endl;
+    static int i = h();
+    return i;
+}
+
+// making sure multiple static inits work right
+// call this one from main
+function : void j() {
+    int z = i(), y = i();
+}
+
+
+// make sure static const don't bleed 
+function : void k() {
+    int i;
+
+    for (i = 0; i < 2; ++i) {
+        static const int i = 3;
+        int j = getThree();
+    }
+
+}
+
+// call this one from main.
+function : void l() {
+    cout << "begin l()" << endl;
+    cout << "should call getThree() four times" << endl;
+    k();
+    k();
+    cout << "end l()" << endl << endl;
+}
+
+// make sure you can get a useful pointer that doesn't go bad from a
+// static const
+function : int * m() {
+    static const int i = 42;
+    return &i;
+}
+
+// call this one from main
+function : void n() {
+    cout << "begin n()" << endl;
+    int * psi = m();
+    cout << "should be 42: " << *psi << endl;
+    
+    // write over the call to m()
+    f();
+    cout << "should still be 42: " << *psi << endl;
+    cout << "and this too: " << *m() << endl;
+
+    cout << "and psi and m() should be equal: " << psi == m() << endl;
+
+    cout << "end n()" << endl;
+}
+
+function : void main() {
+    c();
+    e();
+    j();
+    l();
+    n();
+    
+}

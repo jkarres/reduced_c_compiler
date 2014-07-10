@@ -1,0 +1,130 @@
+
+structdef BITARRAY {
+  bool[10] ba;
+
+  function : bool access(int index) {
+    return this.ba[index];
+  }
+
+  function : void set(int index) {
+    this.ba[index] = true;
+  }
+
+  function : void clear(int index) {
+    this.ba[index] = false;
+  }
+
+  function : void clearAll() {
+    int i;
+    for (i = 0; i < 10; ++i) {
+      this.clear(i);
+    }
+  }
+
+  function : int countSet() {
+    int retval = 0;
+    int i;
+    for (i = 0; i < 10; ++i) {
+      if (this.ba[i]) {
+        retval++;
+      }
+    }
+    return retval;
+  }
+
+  function : void updateOr(BITARRAY& other) {
+    int i;
+    for (i = 0; i < 10; ++i) {
+      if (other.access(i)) {
+        this.set(i);
+      }
+    }
+  }
+
+  function : void updateAnd(BITARRAY& other) {
+    int i;
+    for (i = 0; i < 10; ++i) {
+      if (!(other.access(i))) {
+        this.clear(i);
+      }
+    }
+
+  }
+
+  function : void print() {
+    cout << "<BITARRAY: ";
+    int i;
+    for (i = 0; i < 10; ++i) {
+      if (this.access(i)) { cout << i << " "; }
+    }
+    cout << ">" << endl;
+  }
+
+  function : bool * getPointerTo(int i) {
+    return &this.ba[i];
+  }
+
+};
+
+
+BITARRAY ba2;
+
+function : void main() {
+
+  cout << "ba2 already in bss." << endl;
+  cout << "ba2: ";
+  ba2.print();
+
+  cout << "Creating ba1 on the stack." << endl;
+  BITARRAY ba1;
+  cout << "Calling ba1.clearAll()." << endl;
+  ba1.clearAll();
+  cout << "ba1: ";
+  ba1.print();
+
+  cout << "Setting ba1's 5, 6, and 7." << endl;
+  ba1.set(5);
+  ba1.set(6);
+  ba1.set(7);
+  cout << "ba1: ";
+  ba1.print();
+
+  cout << "Setting ba2's 3, 4, and 5." << endl;
+  ba2.set(3);
+  ba2.set(4);
+  ba2.set(5);
+  cout << "ba2: ";
+  ba2.print();
+
+
+  cout << "Calling ba1.updateAnd(ba2)." << endl;
+  ba1.updateAnd(ba2);
+  cout << "ba1: ";
+  ba1.print();  
+
+  cout << "ba2: ";
+  ba2.print();
+
+
+  cout << "Setting ba1's 9." << endl;
+  ba1.set(9);
+  cout << "ba1: ";
+  ba1.print();  
+
+  cout << "Calling ba2.updateOr(ba1)." << endl;  
+  ba2.updateOr(ba1);
+  cout << "ba2: ";
+  ba2.print();
+  cout << "ba1: ";
+  ba1.print();  
+
+  cout << "Number of bits set in ba1: " <<   ba1.countSet() << endl;
+  cout << "Number of bits set in ba2: " <<   ba2.countSet() << endl;
+  
+  cout << "Setting ba1's 1 bit using ba1.getPointerTo(1)." << endl;
+  *ba1.getPointerTo(1) = true;
+
+  cout << "ba1: ";
+  ba1.print();  
+  
+}

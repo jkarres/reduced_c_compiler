@@ -1,0 +1,72 @@
+structdef TREE {
+  int value;
+  TREE* left;
+  TREE* right;
+
+  function : void init(int i) {
+    this.left = NULL;
+    this.right = NULL;
+    this.value = i;
+  }
+
+  function : void insert(int i) {
+    if (i == this.value) {
+      return;
+    }
+
+    if (i > this.value) {
+
+      if (this.right == NULL) {
+        new this.right;
+        this.right->init(i);
+      } else {
+        this.right->insert(i);
+      }
+
+    } else {
+
+      if (this.left == NULL) {
+        new this.left;
+        this.left->init(i);
+      } else {
+        this.left->insert(i);
+      }
+
+    }
+
+  }
+
+  function : void print() {
+    if (this.left != NULL) {
+      this.left->print();
+    }
+    cout << this.value << " ";
+    if (this.right != NULL) {
+      this.right->print();
+    }
+  }
+
+};
+
+
+function : void main() {
+
+  TREE* root;
+  new root;
+  root->init(50);
+
+  root->insert(10);
+  root->insert(90);
+  root->insert(82);
+  root->insert(32);
+  root->insert(32);
+  root->insert(54);
+  root->insert(-3);
+  root->insert(98);
+  root->insert(5);
+  root->insert(42);
+
+  root->print();
+  cout << endl;
+
+}

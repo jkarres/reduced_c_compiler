@@ -1,0 +1,74 @@
+begin c()
+begin a()
+i is 0
+declaring a and b
+in getThree()
+in getThree()
+declaring c and d (static)
+in getThree()
+in getThree()
+declaring e and f
+in getThree()
+in getThree()
+declaring g (static)
+in getThree()
+i is 1
+declaring a and b
+in getThree()
+in getThree()
+declaring c and d (static)
+declaring e and f
+in getThree()
+in getThree()
+declaring g (static)
+end a()
+
+begin a()
+i is 0
+declaring a and b
+in getThree()
+in getThree()
+declaring c and d (static)
+declaring e and f
+in getThree()
+in getThree()
+declaring g (static)
+i is 1
+declaring a and b
+in getThree()
+in getThree()
+declaring c and d (static)
+declaring e and f
+in getThree()
+in getThree()
+declaring g (static)
+end a()
+
+end c()
+
+begin e()
+this should be zero: 0
+this should be one: 1
+this should still be one: 1
+and this should be two: 2
+and d() and i should be equal: true
+end e()
+
+in i()
+in h()
+in g()
+in i()
+begin l()
+should call getThree() four times
+in getThree()
+in getThree()
+in getThree()
+in getThree()
+end l()
+
+begin n()
+should be 42: 42
+should still be 42: 42
+and this too: 42
+and psi and m() should be equal: true
+end n()

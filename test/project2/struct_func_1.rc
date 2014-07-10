@@ -1,0 +1,29 @@
+
+structdef S {
+  int i;
+  function : int getI() { return this.i; }
+  function : void setI(int j) { this.i = j; }
+  function : int add(int j) { return this.i = j + this.i; }
+
+};
+
+S globals;
+
+function : void main() { 
+  cout << globals.getI() << endl;
+
+  globals.setI(100);
+
+  cout << globals.getI() << endl;
+
+  globals.setI(0);
+
+  cout << globals.getI() << endl;
+
+  int i;
+
+  for (i = 0; i < 10; ++i) {
+    cout << globals.add(i) << endl;
+ }
+
+}

@@ -1,0 +1,15 @@
+function : void main() {
+  bool a = true;
+  bool b = false;
+
+  cout << 1 << " " << a == a << endl;
+  cout << 2 << " " << a == b << endl;
+  cout << 3 << " " << b == a << endl;
+  cout << 4 << " " << b == b << endl;
+
+  cout << 5 << " " << a != a << endl;
+  cout << 6 << " " << a != b << endl;
+  cout << 7 << " " << b != a << endl;
+  cout << 8 << " " << b != b << endl;
+
+}

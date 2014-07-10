@@ -1,0 +1,53 @@
+
+function : void main() {
+  int i = 6, j = 7;
+  float f = 6.0, g = 7.0;
+
+  // int vs int
+
+  cout << 1 << " " << i == i << endl;
+  cout << 2 << " " << i == j << endl;
+  cout << 3 << " " << j == i << endl;
+  cout << 4 << " " << j == j << endl;
+
+  cout << 5 << " " << i != i << endl;
+  cout << 6 << " " << i != j << endl;
+  cout << 7 << " " << j != i << endl;
+  cout << 8 << " " << j != j << endl;
+
+  // float vs int
+
+  cout << 9 << " " << f == f << endl;
+  cout << 10 << " " << f == j << endl;
+  cout << 11 << " " << j == f << endl;
+  cout << 12 << " " << j == j << endl;
+
+  cout << 13 << " " << f != f << endl;
+  cout << 14 << " " << f != j << endl;
+  cout << 15 << " " << j != f << endl;
+  cout << 16 << " " << j != j << endl;
+
+  // int vs float
+
+  cout << 17 << " " << i == i << endl;
+  cout << 18 << " " << i == g << endl;
+  cout << 19 << " " << g == i << endl;
+  cout << 20 << " " << g == g << endl;
+
+  cout << 21 << " " << i != i << endl;
+  cout << 22 << " " << i != g << endl;
+  cout << 23 << " " << g != i << endl;
+  cout << 24 << " " << g != g << endl;
+
+  // float vs float
+
+  cout << 25 << " " << f == f << endl;
+  cout << 26 << " " << f == g << endl;
+  cout << 27 << " " << g == f << endl;
+  cout << 28 << " " << g == g << endl;
+
+  cout << 29 << " " << f != f << endl;
+  cout << 30 << " " << f != g << endl;
+  cout << 31 << " " << g != f << endl;
+  cout << 32 << " " << g != g << endl;
+}

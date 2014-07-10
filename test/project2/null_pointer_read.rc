@@ -1,0 +1,6 @@
+
+function : void main() {
+  int * pi = NULL;
+
+  int i = *pi;
+}

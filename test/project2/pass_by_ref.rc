@@ -1,0 +1,36 @@
+int i;
+
+function : void incr(int & j) {
+  ++j;
+}
+
+
+function : void swap(int & a, int & b) {
+  int temp = a;
+  a = b;
+  b = temp;
+}
+
+
+function : void oneref(int a, int & b) {
+  a = 0;
+  b = 0;
+}
+
+function : void main() {
+  cout << i << endl;
+  incr(i);
+  cout << i << endl;
+
+
+  int a = 11, b = 99;
+
+  cout << a << " " << b << endl;
+  swap(a, b);
+  cout << a << " " << b << endl;
+
+
+  oneref(a, b);
+  cout << a << " " << b << endl;
+
+}

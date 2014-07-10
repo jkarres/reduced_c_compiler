@@ -1,0 +1,50 @@
+
+function : void main () {
+  int i;
+
+  int * pi1 = &i;
+  int * pi2 = pi1;
+
+  int * nullpi = NULL;
+
+  cout << 1 << " " << pi1 == pi1 << endl;
+  cout << 2 << " " << pi1 == pi2 << endl;
+  cout << 3 << " " << pi1 == nullpi << endl;
+  cout << 4 << " " << pi1 == NULL << endl;
+
+  cout << 5 << " " << pi2 == pi1 << endl;
+  cout << 6 << " " << pi2 == pi2 << endl;
+  cout << 7 << " " << pi2 == nullpi << endl;
+  cout << 8 << " " << pi2 == NULL << endl;
+
+  cout << 9 << " " << nullpi == pi1 << endl;
+  cout << 10 << " " << nullpi == pi2 << endl;
+  cout << 11 << " " << nullpi == nullpi << endl;
+  cout << 12 << " " << nullpi == NULL << endl;
+
+  cout << 13 << " " << NULL == pi1 << endl;
+  cout << 14 << " " << NULL == pi2 << endl;
+  cout << 15 << " " << NULL == nullpi << endl;
+  cout << 16 << " " << NULL == NULL << endl;
+
+  cout << 17 << " " << pi1 != pi1 << endl;
+  cout << 18 << " " << pi1 != pi2 << endl;
+  cout << 19 << " " << pi1 != nullpi << endl;
+  cout << 20 << " " << pi1 != NULL << endl;
+
+  cout << 21 << " " << pi2 != pi1 << endl;
+  cout << 22 << " " << pi2 != pi2 << endl;
+  cout << 23 << " " << pi2 != nullpi << endl;
+  cout << 24 << " " << pi2 != NULL << endl;
+
+  cout << 25 << " " << nullpi != pi1 << endl;
+  cout << 26 << " " << nullpi != pi2 << endl;
+  cout << 27 << " " << nullpi != nullpi << endl;
+  cout << 28 << " " << nullpi != NULL << endl;
+
+  cout << 29 << " " << NULL != pi1 << endl;
+  cout << 30 << " " << NULL != pi2 << endl;
+  cout << 31 << " " << NULL != nullpi << endl;
+  cout << 32 << " " << NULL != NULL << endl;
+
+}

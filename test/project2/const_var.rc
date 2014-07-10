@@ -1,0 +1,22 @@
+// testing using const vars in exprs
+
+const int gci = 23 + 1;
+
+const float gcf = 9.22 + 1;
+
+const bool gcb = !true;
+
+function : void main() {
+  const int lci = 24;
+  const float lcf = 10.33;
+  const bool lcb = !false;
+
+  cout << 1 << " " << 1 + gci << endl;
+  cout << 2 << " " << 2.2 + gcf << endl;
+  cout << 3 << " " << false || gcb << endl;
+
+  cout << 4 << " " << lci - 1 << endl;
+  cout << 5 << " " << lcf - 3.4 << endl;
+  cout << 6 << " " << true && lcb << endl;
+}
+  

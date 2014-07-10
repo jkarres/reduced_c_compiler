@@ -1,0 +1,10 @@
+// writing to an invalid location (negative)
+
+function : void main() {
+  int[9] ia;
+
+  int i = -1;
+
+  ia[i] = i;
+
+}

@@ -1,0 +1,7 @@
+// just mentioning a bad location is enough
+
+int[10] ia;
+
+int i = -1;
+
+function : void main() { ia[i]; }

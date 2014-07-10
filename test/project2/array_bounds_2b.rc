@@ -1,0 +1,13 @@
+// reading from an invalid location
+
+int[9] ia;
+
+function : void main() {
+
+  int i;
+
+  for (i = 0; i < 10; ++i) {
+    cout << ia[i] << endl;
+  }
+
+}

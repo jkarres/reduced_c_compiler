@@ -1,0 +1,16 @@
+// no problems using pointers
+
+function : void main() {
+
+  int[10] ia;
+
+  int * pi = &ia[0];
+
+  int i;
+
+  for (i = 0; i < 10; ++i) {
+    pi[i] = i;
+    cout << pi[i] << endl;
+  }
+
+}

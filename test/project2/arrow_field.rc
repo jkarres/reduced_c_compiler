@@ -1,0 +1,72 @@
+structdef ST {
+  int i;
+  float f;
+  bool b;
+  function : void print() {
+    cout << "<ST";
+    cout << " i:" << this.i;
+    cout << " f:" << this.f;
+    cout << " b:" << this.b;
+    cout << ">" << endl;
+  }
+};
+
+
+ST gs;
+
+function : void main() {
+  cout << "ST gs in bss." << endl;
+
+  cout << "Creating ST ls on the stack." << endl;
+  ST ls;
+  cout << endl;
+
+  cout << "Creating ST * ps on the stack, pointing to gs." << endl;
+  ST * ps = &gs;
+
+  cout << "*ps:";
+  ps->print();
+  cout << endl;
+
+  cout << "Setting ps->i to 123, ps->f to 987, and ps->b to true." << endl;
+  ps->i = 123;
+  ps->f = 987;
+  ps->b = true;
+  cout << endl;
+
+  cout << "*ps:";
+  ps->print();
+  cout << endl;
+
+  cout << "gs:";
+  gs.print();
+  cout << endl;
+
+
+  cout << "Setting ps to &ls." << endl;
+  ps = &ls;
+
+
+  cout << "Setting ps->i to 456, ps->f to 654, and ps->b to false." << endl;
+  ps->i = 456;
+  ps->f = 654;
+  ps->b = false;
+
+  cout << "*ps:";
+  ps->print();
+  cout << "ls:";
+  ls.print();
+  cout << endl;
+
+  cout << "*ps = *&gs" << endl;
+  *ps = *&gs;
+
+
+  cout << "*ps:";
+  ps->print();
+  cout << endl;
+
+  cout << "ls:";
+  ls.print();
+
+}

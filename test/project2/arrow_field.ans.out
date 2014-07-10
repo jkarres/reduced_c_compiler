@@ -1,0 +1,21 @@
+ST gs in bss.
+Creating ST ls on the stack.
+
+Creating ST * ps on the stack, pointing to gs.
+*ps:<ST i:0 f:0.00 b:false>
+
+Setting ps->i to 123, ps->f to 987, and ps->b to true.
+
+*ps:<ST i:123 f:987.00 b:true>
+
+gs:<ST i:123 f:987.00 b:true>
+
+Setting ps to &ls.
+Setting ps->i to 456, ps->f to 654, and ps->b to false.
+*ps:<ST i:456 f:654.00 b:false>
+ls:<ST i:456 f:654.00 b:false>
+
+*ps = *&gs
+*ps:<ST i:123 f:987.00 b:true>
+
+ls:<ST i:123 f:987.00 b:true>

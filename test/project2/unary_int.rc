@@ -1,0 +1,16 @@
+// testing unary-sign + ints
+
+const int ci = -5;
+int i = +5;
+
+function : void main() {
+  const int cj = +10;
+  const int j = -10;
+
+  cout << 1 << " " << ci << " " << +ci << " " << -ci << endl;
+  cout << 2 << " " << i << " " << +i << " " << -i << endl;
+  cout << 3 << " " << cj << " " << +cj << " " << -cj << endl;
+  cout << 4 << " " << j << " " << +j << " " << -j << endl;
+  cout << 5 << " " << 7 << " " << +7 << " " << -7 << endl;
+  cout << 6 << " " << (-2 + - -3) << " " << +(-2 + - -3) << " " << -(-2 + - -3) << endl;
+}

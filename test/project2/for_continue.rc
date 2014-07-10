@@ -1,0 +1,23 @@
+
+function : void main() {
+  int i, j;
+
+  for (i = 0; i < 10; ++i) {
+
+    cout << "i is now " << i << endl;
+
+    for (j = 0; j < 10; ++j) {
+
+      cout << "  j is now " << j << endl;
+
+      if (i * j % 2 == 0) {
+        continue;
+      }
+
+      cout << "    " << i * j << " is odd" << endl;
+
+    }
+
+  }
+
+}

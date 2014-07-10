@@ -1,0 +1,21 @@
+9 true && true -> 1  (in rta) 3  (in rtb) true
+10 true && false -> 1  (in rta) 4  (in rfb) false
+11 false && true -> 2  (in rfa) false
+12 false && false -> 2  (in rfa) false
+13 
+14 (t && t) && (t && t) -> 1  (in rta) 3  (in rtb) 5  (in rtc) 7  (in rtd) true
+15 (t && t) && (t && f) -> 1  (in rta) 3  (in rtb) 5  (in rtc) 8  (in rfd) false
+16 (t && t) && (f && t) -> 1  (in rta) 3  (in rtb) 6  (in rfc) false
+17 (t && t) && (f && f) -> 1  (in rta) 3  (in rtb) 6  (in rfc) false
+18 (t && f) && (t && t) -> 1  (in rta) 4  (in rfb) false
+19 (t && f) && (t && f) -> 1  (in rta) 4  (in rfb) false
+20 (t && f) && (f && t) -> 1  (in rta) 4  (in rfb) false
+21 (t && f) && (f && f) -> 1  (in rta) 4  (in rfb) false
+22 (f && t) && (t && t) -> 2  (in rfa) false
+23 (f && t) && (t && f) -> 2  (in rfa) false
+24 (f && t) && (f && t) -> 2  (in rfa) false
+25 (f && t) && (f && f) -> 2  (in rfa) false
+26 (f && f) && (t && t) -> 2  (in rfa) false
+27 (f && f) && (t && f) -> 2  (in rfa) false
+28 (f && f) && (f && t) -> 2  (in rfa) false
+29 (f && f) && (f && f) -> 2  (in rfa) false

@@ -1,0 +1,13 @@
+printing out each element directly:
+0
+10
+20
+30
+40
+50
+60
+70
+80
+90
+printing out using the print function:
+0 10 20 30 40 50 60 70 80 90

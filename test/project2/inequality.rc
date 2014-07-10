@@ -1,0 +1,76 @@
+// testing float/float, float/int, int/float inequalities
+
+function : void main() {
+  int i = 6, j = 7;
+  float f = 6.0, g = 7.0;
+
+  // unequal float and int
+  // f=6.0, j=7
+
+  cout << 1 << " " << f < f << endl;
+  cout << 2 << " " << f < j << endl;
+  cout << 3 << " " << j < f << endl;
+  cout << 4 << " " << j < j << endl;
+
+  cout << 5 << " " << f <= f << endl;
+  cout << 6 << " " << f <= j << endl;
+  cout << 7 << " " << j <= f << endl;
+  cout << 8 << " " << j <= j << endl;
+
+  cout << 9 << " " << f > f << endl;
+  cout << 10 << " " << f > j << endl;
+  cout << 11 << " " << j > f << endl;
+  cout << 12 << " " << j > j << endl;
+
+  cout << 13 << " " << f >= f << endl;
+  cout << 14 << " " << f >= j << endl;
+  cout << 15 << " " << j >= f << endl;
+  cout << 16 << " " << j >= j << endl;
+
+  // equal int and float
+  // i=6, g=6.0
+
+  cout << 17 << " " << i < i << endl;
+  cout << 18 << " " << i < g << endl;
+  cout << 19 << " " << g < i << endl;
+  cout << 20 << " " << g < g << endl;
+
+  cout << 21 << " " << i <= i << endl;
+  cout << 22 << " " << i <= g << endl;
+  cout << 23 << " " << g <= i << endl;
+  cout << 24 << " " << g <= g << endl;
+
+  cout << 25 << " " << i > i << endl;
+  cout << 26 << " " << i > g << endl;
+  cout << 27 << " " << g > i << endl;
+  cout << 28 << " " << g > g << endl;
+
+  cout << 29 << " " << i >= i << endl;
+  cout << 30 << " " << i >= g << endl;
+  cout << 31 << " " << g >= i << endl;
+  cout << 32 << " " << g >= g << endl;
+
+  // unequal floats
+  // f=6.0, g=7.0
+
+  cout << 33 << " " << f < f << endl;
+  cout << 34 << " " << f < g << endl;
+  cout << 35 << " " << g < f << endl;
+  cout << 36 << " " << g < g << endl;
+
+  cout << 37 << " " << f <= f << endl;
+  cout << 38 << " " << f <= g << endl;
+  cout << 39 << " " << g <= f << endl;
+  cout << 40 << " " << g <= g << endl;
+
+  cout << 41 << " " << f > f << endl;
+  cout << 42 << " " << f > g << endl;
+  cout << 43 << " " << g > f << endl;
+  cout << 44 << " " << g > g << endl;
+
+  cout << 45 << " " << f >= f << endl;
+  cout << 46 << " " << f >= g << endl;
+  cout << 47 << " " << g >= f << endl;
+  cout << 48 << " " << g >= g << endl;
+
+}

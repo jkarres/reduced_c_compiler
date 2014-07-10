@@ -1,0 +1,34 @@
+int i;
+int * pi;
+
+function : void main() {
+  pi = &i;
+
+  *pi = 10;
+
+  cout << *pi << endl;
+  cout << i << endl;
+
+
+  float f;
+  float * pf = &f;
+
+  *pf = *pi;
+
+  cout << f << endl;
+  cout << *pf << endl;
+ 
+
+  int j = 42;
+
+  int * pj = &j;
+
+  int ** ppj = &pj;
+
+  int *** pppj = &ppj;
+
+  ++***pppj;
+
+  cout << j << endl;
+ 
+}

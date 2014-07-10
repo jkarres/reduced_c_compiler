@@ -1,0 +1,21 @@
+ba2 already in bss.
+ba2: <BITARRAY: >
+Creating ba1 on the stack.
+Calling ba1.clearAll().
+ba1: <BITARRAY: >
+Setting ba1's 5, 6, and 7.
+ba1: <BITARRAY: 5 6 7 >
+Setting ba2's 3, 4, and 5.
+ba2: <BITARRAY: 3 4 5 >
+Calling ba1.updateAnd(ba2).
+ba1: <BITARRAY: 5 >
+ba2: <BITARRAY: 3 4 5 >
+Setting ba1's 9.
+ba1: <BITARRAY: 5 9 >
+Calling ba2.updateOr(ba1).
+ba2: <BITARRAY: 3 4 5 9 >
+ba1: <BITARRAY: 5 9 >
+Number of bits set in ba1: 2
+Number of bits set in ba2: 4
+Setting ba1's 1 bit using ba1.getPointerTo(1).
+ba1: <BITARRAY: 1 5 9 >

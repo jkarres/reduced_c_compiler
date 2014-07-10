@@ -1,0 +1,14 @@
+int a, b, c;
+
+function : void main() {
+  int d, e, f;
+
+  a = 2 * (b = 2 * (c = 2 * (d = 2 * (e = 2 * (f = 1)))));
+
+  cout << a << endl;
+  cout << b << endl;
+  cout << c << endl;
+  cout << d << endl;
+  cout << e << endl;
+  cout << f << endl;
+}

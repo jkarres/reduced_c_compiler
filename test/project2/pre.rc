@@ -1,0 +1,20 @@
+int gi = 0;
+
+int gj = ++gi;
+
+int gk = ++gi;
+
+function : void main() {
+  cout << 1 << " " << gi << endl;
+  cout << 2 << " " << gj << endl;
+  cout << 3 << " " << gk << endl;
+
+  int li = 0;
+  int lj = 10 + ++li;
+  int lk = ++li + 10;
+
+  cout << 4 << " " << li << endl;
+  cout << 5 << " " << lj << endl;
+  cout << 6 << " " << lk << endl;
+
+}
